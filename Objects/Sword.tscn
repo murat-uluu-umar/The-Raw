@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="RayShape" id=2]
+length = 0.77857
+
+[node name="Sword" type="Area"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1.9845e-08, 0, -0.006, 0, -0.009, 0, 0.454, 0, 2.62268e-10, 1.40342e-08, 0, 0.321065 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 0.0110132, 0, -4.20086e-09, 0, -3.88889, 0, 5.29775e-08, 0, 5, -0.544976, 0, 3.21454e-06 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )

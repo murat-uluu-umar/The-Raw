@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Objects/Hero.tscn" type="PackedScene" id=1]
+
+[node name="Test" type="Spatial"]
+
+[node name="level" type="Spatial" parent="."]
+
+[node name="CSGBox2" type="CSGBox" parent="level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25264, 0.880678, -1.07276 )
+use_collision = true
+height = 1.9701
+
+[node name="CSGBox3" type="CSGBox" parent="level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.82976, 1.39644, -1.44704 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox5" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 12.6719, 0.298588, -0.917715 )
+use_collision = true
+height = 1.9701
+
+[node name="CSGBox6" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 12.7411, 0.81435, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox10" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 24.2212, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox11" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 26.0998, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox12" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 28.3509, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox13" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 30.3173, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox14" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 32.3855, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox15" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 34.4783, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox16" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, 0, 1, 0, 0.889504, 0, 0.456927, 36.34, 0.394048, -1.60208 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox7" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, -0.743837, -0.548366, -0.3821, -0.487774, 0.836238, -0.250563, 20.6877, 0.164619, -0.159273 )
+use_collision = true
+height = 1.9701
+
+[node name="CSGBox8" type="CSGBox" parent="level"]
+transform = Transform( 0.456927, 0, -0.889504, -0.743837, -0.548366, -0.3821, -0.487774, 0.836238, -0.250563, 20.757, 0.454088, 0.647312 )
+use_collision = true
+width = 1.00772
+height = 2.62742
+depth = 1.01855
+
+[node name="CSGBox" type="CSGBox" parent="level"]
+use_collision = true
+width = 11.7554
+height = 0.996449
+depth = 4.55135
+
+[node name="CSGBox4" type="CSGBox" parent="level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1088, -0.430477, 0.529447 )
+use_collision = true
+width = 19.9093
+height = 0.996449
+depth = 4.55135
+
+[node name="CSGBox9" type="CSGBox" parent="level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2845, -1.03287, -0.299721 )
+use_collision = true
+width = 19.9093
+height = 0.996449
+depth = 4.55135
+
+[node name="Hero" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08273, 1.57393, -0.172258 )
