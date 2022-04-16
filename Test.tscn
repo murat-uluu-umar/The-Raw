@@ -5,6 +5,7 @@
 [node name="Test" type="Spatial"]
 
 [node name="level" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="CSGBox2" type="CSGBox" parent="level"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25264, 0.880678, -1.07276 )
@@ -112,4 +113,4 @@ height = 0.996449
 depth = 4.55135
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08273, 1.57393, -0.172258 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185774, 2.07181, -0.172258 )
