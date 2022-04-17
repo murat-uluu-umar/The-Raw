@@ -1,34 +1,67 @@
 extends KinematicBody
 
+#constants
 const UP = 0
 const DOWN = 1
 
+#nodes
 onready var animation_tree = get_node('../AnimationTree')
+onready var stand_colider : CollisionShape = get_node('CollisionShape')
+onready var crouch_colider : CollisionShape = get_node('CollisionShapeCrouch')
 onready var boy : Spatial = get_node('Boy')
+onready var tween : Tween = get_node('../Tween')
+
+#animation tree parameters
 var state = 'parameters/state/blend_amount'
 var up_state = 'parameters/up_state/blend_amount'
 var down_state = 'parameters/down_state/blend_amount'
 var turn_around = 'parameters/turn_around/active'
 var jump = 'parameters/jump/active'
+
+#variables
 var velocity = Vector3(0,0,0)
 var left = true
+
 func _ready():
 	pass
 
 func _physics_process(delta):
+	input_handler()
+	move_and_slide(velocity,Vector3.UP)
+
+func move(dir : int) -> void:
+	movement_state(0)
+	velocity.z = gl.speed * dir
+
+func movement_state(mstate : int) -> void:
+	interpolate(animation_tree, up_state, animation_tree.get(up_state), mstate, 0.05)
+	interpolate(animation_tree, down_state, animation_tree.get(down_state), mstate, 0.05)
+
+func switch_coliders(state_colider : int) -> void:
+	if state_colider == UP:
+		stand_colider.disabled = false
+		crouch_colider.disabled = true
+	else: 
+		stand_colider.disabled = true
+		crouch_colider.disabled = false
+
+func input_handler():
 	if Input.is_action_pressed("ui_down"):
-		animation_tree.set(state, DOWN)
-	else: animation_tree.set(state, UP)
+		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
+		switch_coliders(DOWN)
+	else: 
+		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
+		switch_coliders(UP)
 
 	if Input.is_action_pressed("ui_right"):
 		move(-1)
 		if left:
-			rotation.y = deg2rad(180)
+			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,180,0), 0.3, Tween.TRANS_CIRC)
 			left = false
 	elif Input.is_action_pressed("ui_left"):
 		move(1)
 		if !left:
-			rotation.y = 0
+			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,0,0), 0.3, Tween.TRANS_CIRC)
 			left = true
 	else: 
 		velocity.z = 0
@@ -40,12 +73,10 @@ func _physics_process(delta):
 		velocity.y -= gl.gravity
 	else: 
 		velocity.y = 0
-	move_and_slide(velocity,Vector3.UP)
 
-func move(dir : int) -> void:
-	movement_state(0)
-	velocity.z = gl.speed * dir
+func interpolate(object : Object, property : String, from, to, duration : float = 0.2, trans_type : int = Tween.TRANS_LINEAR, ease_type : int = Tween.EASE_IN_OUT):
+	tween.interpolate_property(object,property,
+	from, to, duration, trans_type,
+	ease_type)
+	tween.start()
 
-func movement_state(mstate : int) -> void:
-	animation_tree.set(up_state, mstate)
-	animation_tree.set(down_state, mstate)
