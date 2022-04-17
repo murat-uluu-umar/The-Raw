@@ -17,7 +17,9 @@ var up_state = 'parameters/up_state/blend_amount'
 var down_state = 'parameters/down_state/blend_amount'
 var turn_around = 'parameters/turn_around/active'
 var jump = 'parameters/jump/active'
-
+var activity = 'parameters/activity/current'
+var activity_shot = 'parameters/activity shot/active'
+var block = 'parameters/block/blend_amount'
 #variables
 var velocity = Vector3(0,0,0)
 var left = true
@@ -46,13 +48,20 @@ func switch_coliders(state_colider : int) -> void:
 		crouch_colider.disabled = false
 
 func input_handler():
+	if Input.is_action_pressed("block"):
+		do_block()
+	elif Input.is_action_just_released("block"):
+		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.05)
+	if Input.is_action_just_pressed("attack"):
+		action('attack')
+	elif Input.is_action_just_pressed("slash"):
+		action('slash')
 	if Input.is_action_pressed("ui_down"):
 		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
 		switch_coliders(DOWN)
 	else: 
 		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
 		switch_coliders(UP)
-
 	if Input.is_action_pressed("ui_right"):
 		move(-1)
 		if left:
@@ -80,3 +89,9 @@ func interpolate(object : Object, property : String, from, to, duration : float 
 	ease_type)
 	tween.start()
 
+func action(input : String) -> void:
+	animation_tree.set(activity, input)
+	animation_tree.set(activity_shot, true)
+
+func do_block():
+	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.05)
