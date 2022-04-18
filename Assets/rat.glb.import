@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/boy2.glb-93c429f5b3eec45ae8ed899478d2e5d5.scn"
+path="res://.import/rat.glb-d8123f30bc8f12268fef755e75a8c29d.scn"
 
 [deps]
 
-source_file="res://Assets/boy2.glb"
-dest_files=[ "res://.import/boy2.glb-93c429f5b3eec45ae8ed899478d2e5d5.scn" ]
+source_file="res://Assets/rat.glb"
+dest_files=[ "res://.import/rat.glb-d8123f30bc8f12268fef755e75a8c29d.scn" ]
 
 [params]
 

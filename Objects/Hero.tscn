@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/activity.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Sword.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/boy_mat.tres" type="Material" id=3]
+[ext_resource path="res://Assets/neares_layer.tres" type="Material" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.195324
@@ -1739,7 +1739,7 @@ input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeOneShot" id=47]
 filter_enabled = true
-filters = [ "Boy/Skeleton:mixamorig_LeftArm", "Boy/Skeleton:mixamorig_LeftForeArm", "Boy/Skeleton:mixamorig_LeftShoulder", "Boy/Skeleton:mixamorig_RightArm", "Boy/Skeleton:mixamorig_RightForeArm", "Boy/Skeleton:mixamorig_RightShoulder", "Boy/Skeleton:mixamorig_Spine", "Boy/Skeleton:mixamorig_Spine1", "Boy/Skeleton:mixamorig_Spine2" ]
+filters = [ "Boy/Skeleton:mixamorig_Head", "Boy/Skeleton:mixamorig_LeftArm", "Boy/Skeleton:mixamorig_LeftForeArm", "Boy/Skeleton:mixamorig_LeftShoulder", "Boy/Skeleton:mixamorig_Neck", "Boy/Skeleton:mixamorig_RightArm", "Boy/Skeleton:mixamorig_RightForeArm", "Boy/Skeleton:mixamorig_RightShoulder", "Boy/Skeleton:mixamorig_Spine", "Boy/Skeleton:mixamorig_Spine1", "Boy/Skeleton:mixamorig_Spine2" ]
 
 [sub_resource type="AnimationNodeBlend2" id=48]
 filter_enabled = true
@@ -1761,7 +1761,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=21]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( 709, -130.25 )
+graph_offset = Vector2( 258.667, -168 )
 nodes/Animation/node = SubResource( 20 )
 nodes/Animation/position = Vector2( -320, -180 )
 "nodes/Animation 2/node" = SubResource( 19 )
@@ -1807,7 +1807,7 @@ nodes/state/node = SubResource( 40 )
 nodes/state/position = Vector2( 320, -20 )
 nodes/up_state/node = SubResource( 21 )
 nodes/up_state/position = Vector2( 20, -180 )
-node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9", "activity_shot", 0, "state", "activity_shot", 1, "activity", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "block", 0, "jump", "block", 1, "Animation 8" ]
+node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "block", 0, "jump", "block", 1, "Animation 8", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9" ]
 
 [node name="Hero" type="Spatial"]
 
@@ -1966,7 +1966,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="Forearm" type="BoneAttachment" parent="HeroBody/Boy/Skeleton"]
-transform = Transform( 0.210566, 0.0966792, 0.972787, 0.27499, 0.949058, -0.153845, -0.938105, 0.299902, 0.173254, -13.8169, 35.2949, -64.5377 )
+transform = Transform( 0.181256, 0.0790112, 0.980256, 0.27954, 0.951511, -0.128383, -0.942869, 0.297292, 0.150381, -16.6092, 33.8101, -62.9048 )
 bone_name = "mixamorig_RightHand"
 
 [node name="Hand" type="Position3D" parent="HeroBody/Boy/Skeleton/Forearm"]
