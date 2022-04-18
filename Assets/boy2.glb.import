@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/boy.glb-931061a7b7c957037140eee63b192d44.scn"
+path="res://.import/boy2.glb-93c429f5b3eec45ae8ed899478d2e5d5.scn"
 
 [deps]
 
-source_file="res://Assets/boy.glb"
-dest_files=[ "res://.import/boy.glb-931061a7b7c957037140eee63b192d44.scn" ]
+source_file="res://Assets/boy2.glb"
+dest_files=[ "res://.import/boy2.glb-93c429f5b3eec45ae8ed899478d2e5d5.scn" ]
 
 [params]
 

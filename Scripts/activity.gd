@@ -18,7 +18,7 @@ var down_state = 'parameters/down_state/blend_amount'
 var turn_around = 'parameters/turn_around/active'
 var jump = 'parameters/jump/active'
 var activity = 'parameters/activity/current'
-var activity_shot = 'parameters/activity shot/active'
+var activity_shot = 'parameters/activity_shot/active'
 var block = 'parameters/block/blend_amount'
 #variables
 var velocity = Vector3(0,0,0)
@@ -52,16 +52,10 @@ func input_handler():
 		do_block()
 	elif Input.is_action_just_released("block"):
 		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.05)
-	if Input.is_action_just_pressed("attack"):
-		action('attack')
+	elif Input.is_action_just_pressed("attack"):
+		action(0)
 	elif Input.is_action_just_pressed("slash"):
-		action('slash')
-	if Input.is_action_pressed("ui_down"):
-		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
-		switch_coliders(DOWN)
-	else: 
-		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
-		switch_coliders(UP)
+		action(1)
 	if Input.is_action_pressed("ui_right"):
 		move(-1)
 		if left:
@@ -75,6 +69,12 @@ func input_handler():
 	else: 
 		velocity.z = 0
 		movement_state(1)
+	if Input.is_action_pressed("ui_down"):
+		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
+		switch_coliders(DOWN)
+	else: 
+		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
+		switch_coliders(UP)
 	if Input.is_action_pressed("ui_up") && is_on_floor():
 		velocity.y += gl.jump
 		animation_tree.set(jump, true)
@@ -89,7 +89,7 @@ func interpolate(object : Object, property : String, from, to, duration : float 
 	ease_type)
 	tween.start()
 
-func action(input : String) -> void:
+func action(input : int) -> void:
 	animation_tree.set(activity, input)
 	animation_tree.set(activity_shot, true)
 
