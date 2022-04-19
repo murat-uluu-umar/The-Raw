@@ -1470,7 +1470,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=26]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -1596, 44 )
+graph_offset = Vector2( -592, 42.6667 )
 nodes/Animatio3/node = SubResource( 20 )
 nodes/Animatio3/position = Vector2( -213.333, 0 )
 nodes/Animation/node = SubResource( 18 )
@@ -1642,7 +1642,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.312329, -0.828545, 0.46472, 0.518843, 0.261006, 0.814049, -0.79577, 0.495369, 0.348364, -35.6913, -6.46572, -67.8393 )
+transform = Transform( -0.31187, -0.82857, 0.464983, 0.519056, 0.26133, 0.81381, -0.795812, 0.495156, 0.348573, -35.6924, -6.47115, -67.8402 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]

@@ -8,11 +8,10 @@ public class DuelManager : Spatial
     public override void _Ready()
     {
         duelants = new Queue<KinematicBody>();
-
     }
     
     public void Submit(KinematicBody body)
     {
-
+        duelants.Enqueue(body);
     }
 }
