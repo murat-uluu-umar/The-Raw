@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Objects/Hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/DuelManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Rat.tscn" type="PackedScene" id=3]
 
 [node name="Test" type="Spatial"]
 
@@ -112,5 +114,11 @@ width = 19.9093
 height = 0.996449
 depth = 4.55135
 
-[node name="Hero" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185774, 2.07181, -0.172258 )
+[node name="DuelManager" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88617, 0.498224, -4.62887 )
+
+[node name="Rat" parent="DuelManager" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51143, 0, 8.27344 )
+
+[node name="Hero" parent="DuelManager" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70039, 1.57359, 4.45661 )

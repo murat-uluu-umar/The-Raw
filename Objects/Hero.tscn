@@ -21,6 +21,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 13026,
+"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.123894, 0.490989, -0.0663289, 0.247788, 0.389643, 0.177701 ), AABB( -0.104029, 0.753873, -0.0406311, 0.208058, 0.17861, 0.139425 ), AABB( -0.104215, 0.783742, -0.0510057, 0.20843, 0.205334, 0.14795 ), AABB( -0.30367, 0.812085, -0.0619649, 0.548134, 0.307514, 0.15706 ), AABB( -0.0527443, 1.05631, -0.0335988, 0.104586, 0.118769, 0.121465 ), AABB( -0.0805126, 1.05631, -0.0500881, 0.161025, 0.289957, 0.197441 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.0440169, 0.88862, -0.0619649, 0.193115, 0.193303, 0.126099 ), AABB( 0.0523793, 0.914375, -0.0619649, 0.492819, 0.167547, 0.126099 ), AABB( 0.191041, 0.947663, -0.0520437, 0.425665, 0.0922285, 0.0821761 ), AABB( 0.347378, 0.946777, -0.0520437, 0.292097, 0.0875626, 0.0618957 ), AABB( -0.243361, 0.88862, -0.0619649, 0.199344, 0.193303, 0.126099 ), AABB( -0.512841, 0.914375, -0.0619649, 0.45856, 0.167547, 0.126099 ), AABB( -0.617788, 0.947663, -0.0520437, 0.439339, 0.0945688, 0.084626 ), AABB( -0.639475, 0.946777, -0.0520437, 0.290391, 0.0875626, 0.0618957 ), AABB( -0.0658722, 0.0601003, -0.0663289, 0.189766, 0.651917, 0.167663 ), AABB( 0.014051, -0.00245806, -0.0355122, 0.0970446, 0.469497, 0.153695 ), AABB( 0.012061, -0.00251611, -0.0355122, 0.0856316, 0.284073, 0.184618 ), AABB( 0.012061, -0.00251611, -0.0355122, 0.0762309, 0.236218, 0.184618 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.123894, 0.0658163, -0.0663289, 0.195686, 0.646201, 0.175417 ), AABB( -0.110581, -0.00245806, -0.0355122, 0.0965303, 0.450768, 0.152514 ), AABB( -0.0976926, -0.00251611, -0.0355122, 0.0856316, 0.284073, 0.184618 ), AABB( -0.0849688, -0.00251611, -0.0355122, 0.0729078, 0.188363, 0.184618 ) ],
 "vertex_count": 2648
@@ -1807,7 +1808,7 @@ nodes/state/node = SubResource( 40 )
 nodes/state/position = Vector2( 320, -20 )
 nodes/up_state/node = SubResource( 21 )
 nodes/up_state/position = Vector2( 20, -180 )
-node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "block", 0, "jump", "block", 1, "Animation 8", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9" ]
+node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "TimeScale 2", 0, "Animation 5", "block", 0, "jump", "block", 1, "Animation 8", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "activity_shot", 0, "state", "activity_shot", 1, "activity", "life", 0, "block", "life", 1, "Animation 9", "TimeScale", 0, "Animation 4", "Crouch_speed", 0, "Animation 7", "TimeScale 3", 0, "Animation 3", "Speed", 0, "Animation" ]
 
 [node name="Hero" type="Spatial"]
 
@@ -1963,10 +1964,10 @@ bones/24/bound_children = [  ]
 [node name="Cube" type="MeshInstance" parent="HeroBody/Boy/Skeleton"]
 mesh = SubResource( 51 )
 skin = SubResource( 2 )
-material/0 = ExtResource( 3 )
+material/0 = null
 
 [node name="Forearm" type="BoneAttachment" parent="HeroBody/Boy/Skeleton"]
-transform = Transform( 0.181256, 0.0790112, 0.980256, 0.27954, 0.951511, -0.128383, -0.942869, 0.297292, 0.150381, -16.6092, 33.8101, -62.9048 )
+transform = Transform( 0.195751, 0.105481, 0.974963, 0.290619, 0.943297, -0.160406, -0.9366, 0.314744, 0.153996, -15.5337, 34.9654, -62.3088 )
 bone_name = "mixamorig_RightHand"
 
 [node name="Hand" type="Position3D" parent="HeroBody/Boy/Skeleton/Forearm"]
