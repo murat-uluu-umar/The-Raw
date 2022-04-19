@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Assets/neares_layer.tres" type="Material" id=1]
 [ext_resource path="res://Objects/RatSword.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Rat.cs" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=13]
 resource_name = "Hero.002"
@@ -1469,7 +1470,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=26]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -1830.67, 152 )
+graph_offset = Vector2( -1596, 44 )
 nodes/Animatio3/node = SubResource( 20 )
 nodes/Animatio3/position = Vector2( -213.333, 0 )
 nodes/Animation/node = SubResource( 18 )
@@ -1500,9 +1501,10 @@ nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "life", 0, "rest", "life", 1, "death_type", "Block", 0, "action", "Block", 1, "Animation 8", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "life", 0, "rest", "life", 1, "death_type" ]
 
 [node name="Rat" type="KinematicBody"]
+script = ExtResource( 3 )
 
 [node name="RatArm" type="Spatial" parent="."]
 transform = Transform( 0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0 )
@@ -1640,14 +1642,13 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.297192, -0.822405, 0.485103, 0.552822, 0.266034, 0.789692, -0.778501, 0.502866, 0.37558, -35.2936, -7.36876, -66.9007 )
+transform = Transform( -0.312329, -0.828545, 0.46472, 0.518843, 0.261006, 0.814049, -0.79577, 0.495369, 0.348364, -35.6913, -6.46572, -67.8393 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]
 transform = Transform( 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, 0, 0, 1, 0, 6, 0 )
 
 [node name="RatSword" parent="RatArm/Skeleton/BoneAttachment/margin" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Block = SubResource( 3 )
@@ -1678,3 +1679,7 @@ parameters/rest/current = 1
 parameters/state/blend_amount = 1.0
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0631964, 0.803999, 0.108839 )
+aabb = AABB( -0.567939, -0.82851, -0.529437, 1.13588, 1.65702, 1.05887 )
