@@ -71,6 +71,13 @@ block={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="player"
+3d_physics/layer_2="npc"
+3d_physics/layer_3="decor"
+3d_physics/layer_4="active"
+
 [logging]
 
 file_logging/enable_file_logging=true

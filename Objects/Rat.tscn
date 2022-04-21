@@ -1501,9 +1501,11 @@ nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "life", 0, "rest", "life", 1, "death_type" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2" ]
 
 [node name="Rat" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 8
 script = ExtResource( 3 )
 
 [node name="RatArm" type="Spatial" parent="."]
@@ -1584,7 +1586,7 @@ bones/14/name = "mixamorig_RightHand"
 bones/14/parent = 13
 bones/14/rest = Transform( 1, 1.13359e-08, 7.02858e-09, -1.13359e-08, 1, -3.20734e-07, -7.02858e-09, 3.20734e-07, 1, -2.83122e-07, 23.8526, 6.04242e-06 )
 bones/14/enabled = true
-bones/14/bound_children = [  ]
+bones/14/bound_children = [ NodePath("BoneAttachment") ]
 bones/15/name = "mixamorig_LeftUpLeg"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.975427, 0.216568, 0.0405924, -0.162441, -0.83127, 0.531605, 0.148873, 0.511946, 0.846019, 9.15365, -5.46908, -0.38238 )
@@ -1642,7 +1644,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.362832, -0.816766, 0.448605, 0.545546, 0.204105, 0.812846, -0.755468, 0.539662, 0.371527, -35.0284, -7.07187, -66.6087 )
+transform = Transform( -0.334014, -0.820658, 0.463633, 0.550653, 0.229321, 0.802616, -0.764994, 0.523386, 0.375301, -35.1311, -7.52887, -66.4006 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]

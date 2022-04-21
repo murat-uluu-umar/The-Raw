@@ -25,7 +25,7 @@ var velocity = Vector3(0,0,0)
 var left = true
 
 func _ready():
-	pass
+	gl.player = self
 
 func _physics_process(delta):
 	input_handler()
@@ -48,13 +48,13 @@ func switch_coliders(state_colider : int) -> void:
 		crouch_colider.disabled = false
 
 func input_handler():
-	if Input.is_action_pressed("block"):
+	if Input.is_action_pressed("block") and is_able():
 		do_block()
 	elif Input.is_action_just_released("block"):
-		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.05)
-	elif Input.is_action_just_pressed("attack"):
+		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.2)
+	elif Input.is_action_just_pressed("attack") and is_able():
 		action(0)
-	elif Input.is_action_just_pressed("slash"):
+	elif Input.is_action_just_pressed("slash") and is_able():
 		action(1)
 	if Input.is_action_pressed("ui_right") and is_able():
 		move(-1)
@@ -72,7 +72,7 @@ func input_handler():
 	if Input.is_action_pressed("ui_down") and is_able():
 		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
 		switch_coliders(DOWN)
-	elif Input.is_action_just_released("ui_down") and is_able(): 
+	elif Input.is_action_just_released("ui_down"): 
 		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
 		switch_coliders(UP)
 	if Input.is_action_pressed("ui_up") and is_on_floor() and is_able():
@@ -94,7 +94,7 @@ func action(input : int) -> void:
 	animation_tree.set(activity_shot, true)
 
 func do_block():
-	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.05)
+	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.2)
 
 func is_able():
 	if animation_tree.get(activity_shot) or animation_tree.get(block) != 0:

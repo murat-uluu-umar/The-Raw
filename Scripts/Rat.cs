@@ -31,6 +31,7 @@ public class Rat : KinematicBody
     private KinematicBody target = null;
     private StateMachine stateMachine = StateMachine.REST;
     private Tween tween = null;
+    public KinematicBody Player {set; get;} = null;
 
     public override void _Ready()
     {
@@ -48,7 +49,7 @@ public class Rat : KinematicBody
 
     public void SignalHandling()
     {
-        if (visibilityNotifier.IsOnScreen())
+        if (visibilityNotifier.IsOnScreen() && Player == null)
         {
             EmitSignal("OnScreen", this);
         }
