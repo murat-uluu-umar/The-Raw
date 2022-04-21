@@ -51,7 +51,7 @@ func input_handler():
 	if Input.is_action_pressed("block") and is_able():
 		do_block()
 	elif Input.is_action_just_released("block"):
-		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.2)
+		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.15)
 	elif Input.is_action_just_pressed("attack") and is_able():
 		action(0)
 	elif Input.is_action_just_pressed("slash") and is_able():
@@ -94,7 +94,7 @@ func action(input : int) -> void:
 	animation_tree.set(activity_shot, true)
 
 func do_block():
-	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.2)
+	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.15)
 
 func is_able():
 	if animation_tree.get(activity_shot) or animation_tree.get(block) != 0:
