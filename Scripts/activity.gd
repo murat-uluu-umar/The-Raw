@@ -56,26 +56,26 @@ func input_handler():
 		action(0)
 	elif Input.is_action_just_pressed("slash"):
 		action(1)
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and is_able():
 		move(-1)
 		if left:
-			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,180,0), 0.3, Tween.TRANS_CIRC)
+			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,180,0), 0.2, Tween.TRANS_CIRC)
 			left = false
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") and is_able():
 		move(1)
 		if !left:
-			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,0,0), 0.3, Tween.TRANS_CIRC)
+			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,0,0), 0.2, Tween.TRANS_CIRC)
 			left = true
 	else: 
 		velocity.z = 0
 		movement_state(1)
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down") and is_able():
 		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
 		switch_coliders(DOWN)
-	else: 
+	elif Input.is_action_just_released("ui_down") and is_able(): 
 		interpolate(animation_tree, state, animation_tree.get(state), UP, 0.05)
 		switch_coliders(UP)
-	if Input.is_action_pressed("ui_up") && is_on_floor():
+	if Input.is_action_pressed("ui_up") and is_on_floor() and is_able():
 		velocity.y += gl.jump
 		animation_tree.set(jump, true)
 	elif !is_on_floor():
@@ -95,3 +95,8 @@ func action(input : int) -> void:
 
 func do_block():
 	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.05)
+
+func is_able():
+	if animation_tree.get(activity_shot) or animation_tree.get(block) != 0:
+		return false
+	return true

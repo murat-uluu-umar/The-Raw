@@ -1739,11 +1739,11 @@ input_1/name = "slash"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeOneShot" id=47]
-filter_enabled = true
 filters = [ "Boy/Skeleton:mixamorig_Head", "Boy/Skeleton:mixamorig_LeftArm", "Boy/Skeleton:mixamorig_LeftForeArm", "Boy/Skeleton:mixamorig_LeftShoulder", "Boy/Skeleton:mixamorig_Neck", "Boy/Skeleton:mixamorig_RightArm", "Boy/Skeleton:mixamorig_RightForeArm", "Boy/Skeleton:mixamorig_RightShoulder", "Boy/Skeleton:mixamorig_Spine", "Boy/Skeleton:mixamorig_Spine1", "Boy/Skeleton:mixamorig_Spine2" ]
+fadein_time = 0.31
+fadeout_time = 0.31
 
 [sub_resource type="AnimationNodeBlend2" id=48]
-filter_enabled = true
 filters = [ "Boy/Skeleton:mixamorig_LeftArm", "Boy/Skeleton:mixamorig_LeftForeArm", "Boy/Skeleton:mixamorig_LeftShoulder", "Boy/Skeleton:mixamorig_Neck", "Boy/Skeleton:mixamorig_RightArm", "Boy/Skeleton:mixamorig_RightForeArm", "Boy/Skeleton:mixamorig_RightShoulder", "Boy/Skeleton:mixamorig_Spine", "Boy/Skeleton:mixamorig_Spine1", "Boy/Skeleton:mixamorig_Spine2" ]
 
 [sub_resource type="AnimationNodeBlend2" id=37]
@@ -1762,7 +1762,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=21]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( 258.667, -168 )
+graph_offset = Vector2( -938.667, -257 )
 nodes/Animation/node = SubResource( 20 )
 nodes/Animation/position = Vector2( -320, -180 )
 "nodes/Animation 2/node" = SubResource( 19 )
@@ -1790,11 +1790,11 @@ nodes/TimeScale/position = Vector2( 360, 500 )
 "nodes/TimeScale 2/node" = SubResource( 30 )
 "nodes/TimeScale 2/position" = Vector2( 940, 160 )
 "nodes/TimeScale 3/node" = SubResource( 52 )
-"nodes/TimeScale 3/position" = Vector2( 540, 280 )
+"nodes/TimeScale 3/position" = Vector2( 506.667, 240 )
 nodes/activity/node = SubResource( 46 )
 nodes/activity/position = Vector2( 720, 320 )
 nodes/activity_shot/node = SubResource( 47 )
-nodes/activity_shot/position = Vector2( 640, -20 )
+nodes/activity_shot/position = Vector2( 640, -26.6667 )
 nodes/block/node = SubResource( 48 )
 nodes/block/position = Vector2( 1240, -20 )
 nodes/down_state/node = SubResource( 37 )
@@ -1808,7 +1808,7 @@ nodes/state/node = SubResource( 40 )
 nodes/state/position = Vector2( 320, -20 )
 nodes/up_state/node = SubResource( 21 )
 nodes/up_state/position = Vector2( 20, -180 )
-node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "TimeScale 2", 0, "Animation 5", "block", 0, "jump", "block", 1, "Animation 8", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "activity_shot", 0, "state", "activity_shot", 1, "activity", "life", 0, "block", "life", 1, "Animation 9", "TimeScale", 0, "Animation 4", "Crouch_speed", 0, "Animation 7", "TimeScale 3", 0, "Animation 3", "Speed", 0, "Animation" ]
+node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "block", 0, "jump", "block", 1, "Animation 8", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9" ]
 
 [node name="Hero" type="Spatial"]
 
@@ -1909,7 +1909,7 @@ bones/14/name = "mixamorig_RightHand"
 bones/14/parent = 13
 bones/14/rest = Transform( 1, -2.96277e-08, 5.33182e-08, 2.96277e-08, 1, 3.4456e-07, -5.33182e-08, -3.4456e-07, 1, -7.59959e-06, 22.4706, -5.60656e-06 )
 bones/14/enabled = true
-bones/14/bound_children = [ NodePath("Forearm") ]
+bones/14/bound_children = [  ]
 bones/15/name = "mixamorig_LeftUpLeg"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.983775, 0.164322, 0.0720069, -0.0995542, -0.833901, 0.542861, 0.149251, 0.526885, 0.83673, 6.28591, -3.88208, -0.00953834 )
@@ -1967,15 +1967,16 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Forearm" type="BoneAttachment" parent="HeroBody/Boy/Skeleton"]
-transform = Transform( 0.195751, 0.105481, 0.974963, 0.290619, 0.943297, -0.160406, -0.9366, 0.314744, 0.153996, -15.5337, 34.9654, -62.3088 )
+transform = Transform( 0.247272, 0.0962823, 0.96415, 0.326006, 0.928771, -0.176359, -0.912456, 0.357929, 0.19827, -18.7243, 31.3756, -63.0785 )
 bone_name = "mixamorig_RightHand"
 
 [node name="Hand" type="Position3D" parent="HeroBody/Boy/Skeleton/Forearm"]
-transform = Transform( 0.622781, -0.43656, 0.649275, 0.573576, 0.819152, 0.000610865, -0.532122, 0.372029, 0.760553, -1.35087, 4.78098, 1.09562 )
+transform = Transform( 0.583635, -0.490527, 0.647112, 0.639627, 0.768663, 0.00578102, -0.500247, 0.410537, 0.762373, -1.22609, 5.34292, 0.991854 )
 
 [node name="Sword" parent="HeroBody/Boy/Skeleton/Forearm/Hand" instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HeroBody"]
+playback_process_mode = 0
 anims/Attack = SubResource( 3 )
 anims/Block = SubResource( 4 )
 "anims/Crouch idle" = SubResource( 5 )
@@ -1998,11 +1999,11 @@ tree_root = SubResource( 14 )
 anim_player = NodePath("../HeroBody/AnimationPlayer")
 active = true
 parameters/Crouch_speed/scale = 1.0
-parameters/Speed/scale = 1.3
-parameters/TimeScale/scale = 2.3
+parameters/Speed/scale = 1.5
+parameters/TimeScale/scale = 1.8
 "parameters/TimeScale 2/scale" = 1.0
-"parameters/TimeScale 3/scale" = 1.6
-parameters/activity/current = 1
+"parameters/TimeScale 3/scale" = 1.3
+parameters/activity/current = 0
 parameters/activity_shot/active = false
 parameters/block/blend_amount = 0.0
 parameters/down_state/blend_amount = 0.0

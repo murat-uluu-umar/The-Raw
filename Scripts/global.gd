@@ -1,5 +1,5 @@
 extends Node
 
-var speed = 3
+var speed = 4
 var gravity = 1
 var jump = 15
