@@ -36,7 +36,7 @@ public class Rat : KinematicBody
 
     public override void _Ready()
     {
-        brain = new Brain();
+        brain = new Brain(60);
         animationTree = GetNode<AnimationTree>("AnimationTree");
         visibilityNotifier = GetNode<VisibilityNotifier>("VisibilityNotifier");
         tween = GetNode<Tween>("Tween");
@@ -94,9 +94,15 @@ public class Rat : KinematicBody
 
     public class Brain 
     {
-        const float distanceAmount = 1.147f;
+        const float distanceAmount = 1f;
+        private float distanceFault = 0;
+        private float skill = 0;
         private Vector3 velocity = new Vector3(0,0,2);
-        public Brain(){}
+        public Brain(float skill)
+        {
+            this.skill = skill;
+            UpdateDistanceFault();
+        }
 
         public void Mind(KinematicBody rat, KinematicBody player)
         {
@@ -120,7 +126,7 @@ public class Rat : KinematicBody
 
         private void Move(KinematicBody rat, KinematicBody player)
         {
-            if (rat.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) > distanceAmount)
+            if (rat.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) > distanceAmount + distanceFault)
             {
                 if (!rat.IsOnFloor()) velocity.y -= 1;
                 else velocity.y = 0;
@@ -130,8 +136,18 @@ public class Rat : KinematicBody
             }else
             {
                 Rat ratState = (Rat) rat;
+                if (ratState.stateMachine == StateMachine.WALK)
+                {
+                    UpdateDistanceFault();
+                GD.Print(distanceFault);}
                 ratState.stateMachine = StateMachine.IDLE;
             }
+        }
+
+        private void UpdateDistanceFault()
+        {
+            float range = distanceAmount - (distanceAmount / 100) * skill;
+            distanceFault = (float) GD.RandRange(-range/2, range);
         }
 
     }
