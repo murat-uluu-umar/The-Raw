@@ -1409,8 +1409,8 @@ tracks/19/imported = false
 tracks/19/enabled = true
 tracks/19/keys = PoolRealArray( 0, 1, 3.16291, 0.662178, -4.25668, -0.0517911, 0.13747, 0.0182116, 0.988983, 1, 1, 1, 0.0666667, 1, 3.08748, 1.12197, -4.30024, -0.0502314, 0.128913, 0.0213038, 0.990154, 1, 1, 1, 0.133333, 1, 3.07684, 1.15026, -4.12414, -0.0469706, 0.110081, 0.0267643, 0.992451, 1, 1, 1, 0.2, 1, 3.16943, 0.224163, -3.93761, -0.0436524, 0.0819275, 0.0276869, 0.995297, 1, 1, 1, 0.266667, 1, 3.63308, -1.11934, -3.7914, -0.0405797, 0.0594764, 0.0249302, 0.997093, 1, 1, 1, 0.333333, 1, 4.71036, -2.19659, -3.27804, -0.0432291, 0.0544297, 0.0248283, 0.997272, 1, 1, 1, 0.4, 1, 5.6239, -2.32138, -3.02725, -0.050205, 0.0539197, 0.0209779, 0.997062, 1, 1, 1, 0.466667, 1, 6.20815, -1.48011, -3.06617, -0.0544549, 0.0599957, 0.0144448, 0.996608, 1, 1, 1, 0.533333, 1, 6.51847, -0.0978622, -3.36752, -0.0492817, 0.0746122, 0.00934323, 0.99595, 1, 1, 1, 0.6, 1, 6.56996, 1.04646, -3.83793, -0.0393306, 0.0933349, 0.00732274, 0.994831, 1, 1, 1, 0.666667, 1, 6.43416, 1.25539, -4.09627, -0.0310585, 0.114474, 0.00806767, 0.992908, 1, 1, 1, 0.733333, 1, 6.09588, 0.500389, -4.43661, -0.0303077, 0.134003, 0.0101898, 0.990465, 1, 1, 1, 0.8, 1, 5.62476, -1.19017, -4.46768, -0.0332982, 0.155376, 0.0134306, 0.987203, 1, 1, 1, 0.866667, 1, 5.2059, -2.9836, -3.91493, -0.0324212, 0.172146, 0.0149038, 0.984425, 1, 1, 1, 0.933333, 1, 4.60694, -3.68091, -3.54209, -0.0361976, 0.185056, 0.0102302, 0.982008, 1, 1, 1, 1, 1, 4.04745, -2.90324, -3.5935, -0.0512546, 0.182815, 0.0094596, 0.981765, 1, 1, 1, 1.06667, 1, 3.5147, -0.991447, -3.9974, -0.0539558, 0.160244, 0.0130386, 0.985515, 1, 1, 1, 1.13333, 1, 3.16464, 0.662239, -4.25702, -0.0517912, 0.13747, 0.0182107, 0.988983, 1, 1, 1 )
 
-[sub_resource type="CapsuleShape" id=12]
-radius = 0.285932
+[sub_resource type="CapsuleShape" id=30]
+radius = 0.378581
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "RCrouch Idle"
@@ -1470,7 +1470,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=26]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -1257.33, 339 )
+graph_offset = Vector2( -1661.33, 114.667 )
 nodes/Animatio3/node = SubResource( 20 )
 nodes/Animatio3/position = Vector2( -213.333, 0 )
 nodes/Animation/node = SubResource( 18 )
@@ -1501,15 +1501,17 @@ nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7" ]
 
 [node name="Rat" type="KinematicBody"]
 collision_layer = 2
 collision_mask = 8
+axis_lock_motion_x = true
+move_lock_x = true
 script = ExtResource( 3 )
 
 [node name="RatArm" type="Spatial" parent="."]
-transform = Transform( 0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0 )
+transform = Transform( 0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0.113762, 0, -0.112986 )
 
 [node name="Skeleton" type="Skeleton" parent="RatArm"]
 bones/0/name = "mixamorig_Hips"
@@ -1586,7 +1588,7 @@ bones/14/name = "mixamorig_RightHand"
 bones/14/parent = 13
 bones/14/rest = Transform( 1, 1.13359e-08, 7.02858e-09, -1.13359e-08, 1, -3.20734e-07, -7.02858e-09, 3.20734e-07, 1, -2.83122e-07, 23.8526, 6.04242e-06 )
 bones/14/enabled = true
-bones/14/bound_children = [ NodePath("BoneAttachment") ]
+bones/14/bound_children = [  ]
 bones/15/name = "mixamorig_LeftUpLeg"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.975427, 0.216568, 0.0405924, -0.162441, -0.83127, 0.531605, 0.148873, 0.511946, 0.846019, 9.15365, -5.46908, -0.38238 )
@@ -1644,7 +1646,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.334014, -0.820658, 0.463633, 0.550653, 0.229321, 0.802616, -0.764994, 0.523386, 0.375301, -35.1311, -7.52887, -66.4006 )
+transform = Transform( -0.364707, -0.811784, 0.456066, 0.513252, 0.233405, 0.82589, -0.776891, 0.535286, 0.331525, -34.9735, -6.81613, -66.4261 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]
@@ -1664,8 +1666,8 @@ anims/RT = SubResource( 10 )
 anims/RWalk = SubResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0779815, 0.779814, 0.194953 )
-shape = SubResource( 12 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0357805, 0.779814, 0.0819667 )
+shape = SubResource( 30 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
@@ -1683,5 +1685,5 @@ parameters/state/blend_amount = 1.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0631964, 0.803999, 0.108839 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0505656, 0.803999, -0.00414727 )
 aabb = AABB( -0.567939, -0.82851, -0.529437, 1.13588, 1.65702, 1.05887 )

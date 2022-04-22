@@ -4,22 +4,22 @@ using System.Collections.Generic;
 public class DuelManager : Spatial
 {
 
-    private Node Global;
-    private KinematicBody Player = null;
+    private Node global;
+    private KinematicBody player = null;
     private Queue<KinematicBody> duelants;
 
     public override void _Ready()
     {
-        Global = GetNode<Node>("/root/gl");
-        Player = (KinematicBody) Global.Get("player");
+        global = GetNode<Node>("/root/gl");
+        player = (KinematicBody) global.Get("player");
         duelants = new Queue<KinematicBody>();
     }
 
     public void Submit(Rat body)
     {
         duelants.Enqueue(body);
-        if (Player != null)
-            body.Player = Player;
+        if (player != null)
+            body.player = player;
         GD.Print(duelants.Count);
     }
 }
