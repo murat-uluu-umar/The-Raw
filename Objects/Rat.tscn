@@ -1501,7 +1501,7 @@ nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "Block", "Block", 0, "action", "Block", 1, "Animation 8", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "life", 0, "rest", "life", 1, "death_type" ]
 
 [node name="Rat" type="KinematicBody"]
 collision_layer = 2
@@ -1646,7 +1646,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.364707, -0.811784, 0.456066, 0.513252, 0.233405, 0.82589, -0.776891, 0.535286, 0.331525, -34.9735, -6.81613, -66.4261 )
+transform = Transform( -0.368438, -0.813763, 0.449494, 0.545062, 0.202595, 0.813549, -0.7531, 0.544745, 0.368907, -35.0135, -6.95781, -66.5359 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]
@@ -1687,3 +1687,5 @@ parameters/state/blend_amount = 1.0
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0505656, 0.803999, -0.00414727 )
 aabb = AABB( -0.567939, -0.82851, -0.529437, 1.13588, 1.65702, 1.05887 )
+
+[node name="Delay" type="Timer" parent="."]

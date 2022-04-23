@@ -1,156 +1,129 @@
 using Godot;
 using System;
 
-public class Rat : KinematicBody
+namespace RatBot
 {
 
-    // Enums
-    enum StateMachine {
+    public enum StateMachine
+    {
+        SLASH,
+        ATTACK,
+        BLOCK,
         WALK,
         IDLE,
         REST,
-        BLOCK,
-        SLASH,
-        ATTACK
     };
-    // Signals
-    [Signal]
-    public delegate void OnScreen(KinematicBody body); 
-    // Constants
-    private const String life = "parameters/life/current";
-    private const String rest = "parameters/rest/current";
-    private const String action_trans = "parameters/action_trans/current";
-    private const String action = "parameters/action/active";
-    private const String state = "parameters/state/blend_amount";
-    private const String deathType = "parameters/death_type/blend_amount";
-    private const String block = "parameters/block/blend_amount";
 
-    // Variables
-    private AnimationTree animationTree = null;
-    private VisibilityNotifier visibilityNotifier = null;
-    private KinematicBody target = null;
-    private StateMachine stateMachine = StateMachine.REST;
-    private Tween tween = null;
-    public KinematicBody player {set; get;} = null;
-    public Brain brain = null;
-
-    public override void _Ready()
+    public enum ActionState
     {
-        brain = new Brain(60);
-        animationTree = GetNode<AnimationTree>("AnimationTree");
-        visibilityNotifier = GetNode<VisibilityNotifier>("VisibilityNotifier");
-        tween = GetNode<Tween>("Tween");
-        Connect("OnScreen", GetParent(), "Submit");
+        SLASH = 0,
+        ATTACK = 1,
+        BLOCK = 2,
+        NONE = 3
     }
 
-    public override void _PhysicsProcess(float delta)
+    public class Rat : KinematicBody
     {
-        SignalHandling();
-        StateSwitching();
-        brain.Mind(this, player);
-    }
 
-    public void SignalHandling()
-    {
-        if (visibilityNotifier.IsOnScreen() && player == null)
+        // Signals
+        [Signal]
+        public delegate void OnScreen(KinematicBody body);
+        [Signal]
+        public delegate void ActionSignal(int actionType);
+        // Constants
+        public const String life = "parameters/life/current";
+        public const String rest = "parameters/rest/current";
+        public const String action_trans = "parameters/action_trans/current";
+        public const String action = "parameters/action/active";
+        public const String state = "parameters/state/blend_amount";
+        public const String deathType = "parameters/death_type/blend_amount";
+        public const String block = "parameters/block/blend_amount";
+
+        // Variables
+        private AnimationTree animationTree = null;
+
+        private VisibilityNotifier visibilityNotifier = null;
+        private KinematicBody target = null;
+        public StateMachine stateMachine = StateMachine.REST;
+        private Tween tween = null;
+        public KinematicBody player { set; get; } = null;
+        public Brain brain = null;
+
+        public override void _Ready()
         {
-            EmitSignal("OnScreen", this);
-        }
-    }
-
-    public void StateSwitching()
-    {
-        switch (stateMachine)
-        {
-            case StateMachine.WALK:
-                animationTree.Set(rest,1);
-                tween.InterpolateProperty(animationTree,state,animationTree.Get(state), 0, 0.1f, Tween.TransitionType.Linear,Tween.EaseType.InOut);
-                tween.Start();
-                break;
-            case StateMachine.IDLE:
-                animationTree.Set(rest,1);
-                tween.InterpolateProperty(animationTree,state,animationTree.Get(state), 1, 0.1f, Tween.TransitionType.Linear,Tween.EaseType.InOut);
-                tween.Start();
-                break;
-            case StateMachine.REST:
-                animationTree.Set(rest,0);
-                break; 
-            case StateMachine.BLOCK:
-                tween.InterpolateProperty(animationTree,block,animationTree.Get(block), 1, 0.1f, Tween.TransitionType.Linear,Tween.EaseType.InOut);
-                tween.Start();
-                tween.InterpolateProperty(animationTree,block,animationTree.Get(block), 0, 0.1f, Tween.TransitionType.Linear,Tween.EaseType.InOut);
-                tween.Start();
-                break;
-            case StateMachine.SLASH:
-                animationTree.Set(action_trans,1);
-                animationTree.Set(action, true);
-                break;
-            case StateMachine.ATTACK:
-                animationTree.Set(action_trans,0);
-                animationTree.Set(action, true);
-                break;
-        }
-    }
-
-    public class Brain 
-    {
-        const float distanceAmount = 1f;
-        private float distanceFault = 0;
-        private float skill = 0;
-        private Vector3 velocity = new Vector3(0,0,2);
-        public Brain(float skill)
-        {
-            this.skill = skill;
-            UpdateDistanceFault();
+            brain = new Brain(60);
+            animationTree = GetNode<AnimationTree>("AnimationTree");
+            visibilityNotifier = GetNode<VisibilityNotifier>("VisibilityNotifier");
+            tween = GetNode<Tween>("Tween");
+            Connect("OnScreen", GetParent(), "Submit");
+            Connect("ActionSignal", GetParent(), "BotAction");
         }
 
-        public void Mind(KinematicBody rat, KinematicBody player)
+        public override void _PhysicsProcess(float delta)
         {
-            if (player != null)
+            SignalHandling();
+            StateSwitching();
+            brain.Mind(this, player);
+        }
+
+        public void SignalHandling()
+        {
+            if (visibilityNotifier.IsOnScreen() && player == null)
             {
-                Orientation(rat, player);
-                Move(rat,player);
+                EmitSignal("OnScreen", this);
             }
         }
 
-        private void Orientation(KinematicBody rat, KinematicBody player)
+        public void StateSwitching()
         {
-            if (player.GlobalTransform.origin.z > rat.GlobalTransform.origin.z)
+            switch (stateMachine)
             {
-                rat.RotationDegrees = new Vector3(0,Mathf.Lerp(rat.RotationDegrees.y, 0, 0.12f),0);
-            } else
-            {
-                rat.RotationDegrees = new Vector3(0,Mathf.Lerp(rat.RotationDegrees.y, 180, 0.12f),0);
+                case StateMachine.WALK:
+                    animationTree.Set(rest, 1);
+                    tween.InterpolateProperty(animationTree, state, animationTree.Get(state), 0, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    tween.Start();
+                    EmitSignal("ActionSignal", ActionState.NONE);
+                    break;
+                case StateMachine.IDLE:
+                    animationTree.Set(rest, 1);
+                    tween.InterpolateProperty(animationTree, state, animationTree.Get(state), 1, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    tween.Start();
+                    EmitSignal("ActionSignal", ActionState.NONE);
+                    break;
+                case StateMachine.REST:
+                    animationTree.Set(rest, 0);
+                    EmitSignal("ActionSignal", ActionState.NONE);
+                    break;
+                case StateMachine.BLOCK:
+                    tween.InterpolateProperty(animationTree, block, animationTree.Get(block), 1, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    tween.Start();
+                    tween.InterpolateProperty(animationTree, block, animationTree.Get(block), 0, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    tween.Start();
+                    EmitSignal("ActionSignal", ActionState.BLOCK);
+                    break;
+                case StateMachine.SLASH:
+                    animationTree.Set(action_trans, 1);
+                    animationTree.Set(action, true);
+                    EmitSignal("ActionSignal", ActionState.SLASH);
+                    break;
+                case StateMachine.ATTACK:
+                    animationTree.Set(action_trans, 0);
+                    animationTree.Set(action, true);
+                    EmitSignal("ActionSignal", ActionState.ATTACK);
+                    break;
             }
         }
 
-        private void Move(KinematicBody rat, KinematicBody player)
+        public AnimationTree GetAnimationTree()
         {
-            if (rat.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) > distanceAmount + distanceFault)
-            {
-                if (!rat.IsOnFloor()) velocity.y -= 1;
-                else velocity.y = 0;
-                rat.MoveAndSlide(velocity.Rotated(Vector3.Up, rat.Rotation.y), Vector3.Up);
-                Rat ratState = (Rat) rat;
-                ratState.stateMachine = StateMachine.WALK;
-            }else
-            {
-                Rat ratState = (Rat) rat;
-                if (ratState.stateMachine == StateMachine.WALK)
-                {
-                    UpdateDistanceFault();
-                GD.Print(distanceFault);}
-                ratState.stateMachine = StateMachine.IDLE;
-            }
+            return this.animationTree;
         }
 
-        private void UpdateDistanceFault()
+        public void SetAnimationTree(AnimationTree animationTree)
         {
-            float range = distanceAmount - (distanceAmount / 100) * skill;
-            distanceFault = (float) GD.RandRange(-range/2, range);
+            this.animationTree = animationTree;
         }
 
     }
 
 }
-

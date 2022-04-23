@@ -1,5 +1,11 @@
 extends KinematicBody
 
+#signals
+signal action_signal(what)
+
+#enums
+enum ActionState {SLASH=0, ATTACK=1, BLOCK=2, NONE=3}
+
 #constants
 const UP = 0
 const DOWN = 1
@@ -26,6 +32,7 @@ var left = true
 
 func _ready():
 	gl.player = self
+	connect('action_signal' ,get_parent().get_parent(), 'PlayerAction')
 
 func _physics_process(delta):
 	input_handler()
@@ -52,10 +59,15 @@ func input_handler():
 		do_block()
 	elif Input.is_action_just_released("block"):
 		interpolate(animation_tree, block, animation_tree.get(block), 0, 0.15)
+		emit_signal('action_signal', ActionState.NONE)
 	elif Input.is_action_just_pressed("attack") and is_able():
 		action(0)
+	elif Input.is_action_just_released("attack"):
+		emit_signal('action_signal', ActionState.NONE)
 	elif Input.is_action_just_pressed("slash") and is_able():
 		action(1)
+	elif Input.is_action_just_released("slash"):
+		emit_signal('action_signal', ActionState.NONE)
 	if Input.is_action_pressed("ui_right") and is_able():
 		move(-1)
 		if left:
@@ -92,9 +104,16 @@ func interpolate(object : Object, property : String, from, to, duration : float 
 func action(input : int) -> void:
 	animation_tree.set(activity, input)
 	animation_tree.set(activity_shot, true)
+	if input:
+		emit_signal('action_signal', ActionState.ATTACK)
+	else: 
+		emit_signal('action_signal', ActionState.SLASH)
 
 func do_block():
+	if animation_tree.get(block) == 0:
+		emit_signal('action_signal', ActionState.BLOCK)
 	interpolate(animation_tree, block, animation_tree.get(block), 1, 0.15)
+	
 
 func is_able():
 	if animation_tree.get(activity_shot) or animation_tree.get(block) != 0:
