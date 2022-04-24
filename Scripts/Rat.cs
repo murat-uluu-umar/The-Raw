@@ -6,8 +6,8 @@ namespace RatBot
 
     public enum StateMachine
     {
-        SLASH,
         ATTACK,
+        SLASH,
         BLOCK,
         WALK,
         IDLE,
@@ -16,8 +16,8 @@ namespace RatBot
 
     public enum ActionState
     {
-        SLASH = 0,
-        ATTACK = 1,
+        ATTACK = 0,
+        SLASH = 1,
         BLOCK = 2,
         NONE = 3
     }
@@ -37,7 +37,7 @@ namespace RatBot
         public const String action = "parameters/action/active";
         public const String state = "parameters/state/blend_amount";
         public const String deathType = "parameters/death_type/blend_amount";
-        public const String block = "parameters/block/blend_amount";
+        public const String block = "parameters/block/active";
 
         // Variables
         private AnimationTree animationTree = null;
@@ -45,6 +45,7 @@ namespace RatBot
         private VisibilityNotifier visibilityNotifier = null;
         private KinematicBody target = null;
         public StateMachine stateMachine = StateMachine.REST;
+        public ActionState actionState = ActionState.NONE;
         private Tween tween = null;
         public KinematicBody player { set; get; } = null;
         public Brain brain = null;
@@ -82,34 +83,34 @@ namespace RatBot
                     animationTree.Set(rest, 1);
                     tween.InterpolateProperty(animationTree, state, animationTree.Get(state), 0, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                     tween.Start();
-                    EmitSignal("ActionSignal", ActionState.NONE);
+                    MakeActionSignal(ActionState.NONE);
                     break;
                 case StateMachine.IDLE:
                     animationTree.Set(rest, 1);
                     tween.InterpolateProperty(animationTree, state, animationTree.Get(state), 1, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                     tween.Start();
-                    EmitSignal("ActionSignal", ActionState.NONE);
+                    MakeActionSignal(ActionState.NONE);
                     break;
                 case StateMachine.REST:
                     animationTree.Set(rest, 0);
-                    EmitSignal("ActionSignal", ActionState.NONE);
+                    MakeActionSignal(ActionState.NONE);
                     break;
                 case StateMachine.BLOCK:
-                    tween.InterpolateProperty(animationTree, block, animationTree.Get(block), 1, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-                    tween.Start();
-                    tween.InterpolateProperty(animationTree, block, animationTree.Get(block), 0, 0.1f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-                    tween.Start();
-                    EmitSignal("ActionSignal", ActionState.BLOCK);
+                    if (!(Boolean)GetAnimationTree().Get(Rat.action) || !(Boolean)GetAnimationTree().Get(Rat.block))
+                        animationTree.Set(block, true);
+                    MakeActionSignal(ActionState.BLOCK);
                     break;
                 case StateMachine.SLASH:
                     animationTree.Set(action_trans, 1);
-                    animationTree.Set(action, true);
-                    EmitSignal("ActionSignal", ActionState.SLASH);
+                    if (!(Boolean)GetAnimationTree().Get(Rat.action) || !(Boolean)GetAnimationTree().Get(Rat.block))
+                        animationTree.Set(action, true);
+                    MakeActionSignal(ActionState.SLASH);
                     break;
                 case StateMachine.ATTACK:
                     animationTree.Set(action_trans, 0);
-                    animationTree.Set(action, true);
-                    EmitSignal("ActionSignal", ActionState.ATTACK);
+                    if (!(Boolean)GetAnimationTree().Get(Rat.action) || !(Boolean)GetAnimationTree().Get(Rat.block))
+                        animationTree.Set(action, true);
+                    MakeActionSignal(ActionState.ATTACK);
                     break;
             }
         }
@@ -122,6 +123,15 @@ namespace RatBot
         public void SetAnimationTree(AnimationTree animationTree)
         {
             this.animationTree = animationTree;
+        }
+
+        public void MakeActionSignal(ActionState actionState)
+        {
+            if (this.actionState != actionState)
+            {
+                EmitSignal("ActionSignal", actionState);
+                this.actionState = actionState;
+            }
         }
 
     }

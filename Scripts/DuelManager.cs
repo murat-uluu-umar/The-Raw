@@ -5,27 +5,31 @@ using RatBot;
 public class DuelManager : Spatial
 {
 
-    private const float harmDistance = 2f;
+    [Signal]
+    public delegate void EnemySubmit(Rat rat);
 
+    private const float harmDistance = 2f;
+    public Rat duelant = null;
     private Node global;
     private KinematicBody player = null;
-    private Queue<KinematicBody> duelants;
     private int playerAction = 3;
     private int botAction = 3;
 
     public override void _Ready()
     {
         global = GetNode<Node>("/root/gl");
-        player = (KinematicBody) global.Get("player");
-        duelants = new Queue<KinematicBody>();
+        player = (KinematicBody)global.Get("player");
+        Connect("EnemySubmit", player, "enemy_submit");
     }
 
     public void Submit(Rat body)
     {
-        duelants.Enqueue(body);
         if (player != null)
+        {
             body.player = player;
-        GD.Print(duelants.Count);
+            EmitSignal("EnemySubmit", body);
+            duelant = body;
+        }
     }
 
     public override void _PhysicsProcess(float delta)
@@ -36,10 +40,9 @@ public class DuelManager : Spatial
     public void PlayerAction(int actionType)
     {
         playerAction = actionType;
-        if (duelants.Count != 0)
+        if (duelant != null)
         {
-            Rat bot = (Rat) duelants.Peek();
-            bot.brain.playerState = actionType;
+            duelant.brain.playerState = actionType;
         }
     }
 
@@ -50,19 +53,18 @@ public class DuelManager : Spatial
 
     public void Duel()
     {
-        if (duelants.Count != 0)
+        if (duelant != null)
         {
-            Rat bot = (Rat) duelants.Peek();
-            if (bot.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) <= harmDistance)
+            if (duelant.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) <= harmDistance)
             {
                 int actionState = Mathf.Abs(playerAction - botAction);
                 if (actionState <= 1)
                 {
-                    GD.Print("REFLECTED!");
-                } 
+                    // GD.Print("REFLECTED!");
+                }
                 else if (actionState > 1)
                 {
-                    GD.Print("HIT!");    
+                    // GD.Print("HIT!");    
                 }
             }
         }

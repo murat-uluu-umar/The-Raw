@@ -1808,7 +1808,7 @@ nodes/state/node = SubResource( 40 )
 nodes/state/position = Vector2( 320, -20 )
 nodes/up_state/node = SubResource( 21 )
 nodes/up_state/position = Vector2( 20, -180 )
-node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "block", 0, "jump", "block", 1, "Animation 8", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9" ]
+node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9", "block", 0, "jump", "block", 1, "Animation 8" ]
 
 [node name="Hero" type="Spatial"]
 
@@ -1968,7 +1968,7 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Forearm" type="BoneAttachment" parent="HeroBody/Boy/Skeleton"]
-transform = Transform( 0.18702, 0.0969497, 0.97756, 0.268454, 0.952195, -0.145793, -0.944963, 0.289697, 0.152053, -13.4779, 36.5955, -63.6277 )
+transform = Transform( 0.242798, 0.102269, 0.964671, 0.318738, 0.930805, -0.178902, -0.916217, 0.350915, 0.193401, -17.8483, 32.1905, -62.4802 )
 bone_name = "mixamorig_RightHand"
 
 [node name="Hand" type="Position3D" parent="HeroBody/Boy/Skeleton/Forearm"]

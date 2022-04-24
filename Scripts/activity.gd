@@ -28,7 +28,7 @@ var activity_shot = 'parameters/activity_shot/active'
 var block = 'parameters/block/blend_amount'
 #variables
 var velocity = Vector3(0,0,0)
-var left = true
+var enemy = null
 
 func _ready():
 	gl.player = self
@@ -68,19 +68,22 @@ func input_handler():
 		action(1)
 	elif Input.is_action_just_released("slash"):
 		emit_signal('action_signal', ActionState.NONE)
+	
 	if Input.is_action_pressed("ui_right") and is_able():
 		move(-1)
-		if left:
-			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,180,0), 0.2, Tween.TRANS_CIRC)
-			left = false
+		rotate_to(false)
 	elif Input.is_action_pressed("ui_left") and is_able():
 		move(1)
-		if !left:
-			interpolate(self, 'rotation_degrees', rotation_degrees, Vector3(0,0,0), 0.2, Tween.TRANS_CIRC)
-			left = true
+		rotate_to(true)
 	else: 
 		velocity.z = 0
 		movement_state(1)
+	if enemy != null:
+		if enemy.global_transform.origin.distance_to(global_transform.origin) < 1.5:
+			if enemy.global_transform.origin.z < global_transform.origin.z:
+				rotate_to(false)
+			else:
+				rotate_to(true)
 	if Input.is_action_pressed("ui_down") and is_able():
 		interpolate(animation_tree, state, animation_tree.get(state), DOWN, 0.05)
 		switch_coliders(DOWN)
@@ -96,6 +99,7 @@ func input_handler():
 		velocity.y = 0
 
 func interpolate(object : Object, property : String, from, to, duration : float = 0.2, trans_type : int = Tween.TRANS_LINEAR, ease_type : int = Tween.EASE_IN_OUT):
+	tween.stop(object, property)
 	tween.interpolate_property(object,property,
 	from, to, duration, trans_type,
 	ease_type)
@@ -119,3 +123,13 @@ func is_able():
 	if animation_tree.get(activity_shot) or animation_tree.get(block) != 0:
 		return false
 	return true
+
+func rotate_to(leftin : bool):
+	if !leftin:
+		rotation_degrees.y = lerp(rotation_degrees.y, 180, 0.12)
+	else:
+		rotation_degrees.y = lerp(rotation_degrees.y, 0, 0.12)
+
+func enemy_submit(rat):
+	enemy = rat
+	

@@ -8,6 +8,7 @@ public class Brain
     private float distanceFault = 0;
     private float skill = 0;
     private Vector3 velocity = new Vector3(0, 0, 2);
+    private Vector3 orientation  = new Vector3(0,0,0);
     public int playerState { set; get; } = 3;
     public Brain(float skill)
     {
@@ -27,13 +28,14 @@ public class Brain
 
     private void Orientation(KinematicBody rat, KinematicBody player)
     {
+        rat.RotationDegrees = orientation;
         if (player.GlobalTransform.origin.z > rat.GlobalTransform.origin.z)
         {
-            rat.RotationDegrees = new Vector3(0, Mathf.Lerp(rat.RotationDegrees.y, 0, 0.12f), 0);
+            orientation.y = Mathf.Lerp(rat.RotationDegrees.y, 0, 0.12f);
         }
         else
         {
-            rat.RotationDegrees = new Vector3(0, Mathf.Lerp(rat.RotationDegrees.y, 180, 0.12f), 0);
+            orientation.y = Mathf.Lerp(rat.RotationDegrees.y, 180, 0.12f);
         }
     }
 
@@ -57,21 +59,23 @@ public class Brain
 
     private void Action(KinematicBody rat, KinematicBody player)
     {
-        if (rat.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) < distanceAmount + distanceFault)
+        Rat ratState = (Rat)rat;
+        if (!(Boolean)ratState.GetAnimationTree().Get(Rat.action) || !(Boolean)ratState.GetAnimationTree().Get(Rat.block))
         {
-            ChangeStateMachine(rat, StateMachine.ATTACK);
-            if (playerState < 2)
+            if (rat.GlobalTransform.origin.DistanceTo(player.GlobalTransform.origin) < distanceAmount + distanceFault)
             {
-                ChangeStateMachine(rat, (StateMachine)playerState++);
-            }
-            else if (playerState == 2)
-            {
-                ChangeStateMachine(rat, (StateMachine)playerState - 2);
-            }
-            else if (playerState == 3)
-            {
-                Rat ratState = (Rat)rat;
-                if (!(Boolean)ratState.GetAnimationTree().Get(Rat.action))
+                if (playerState < 2)
+                {
+                    if (playerState == 0)
+                        ChangeStateMachine(rat, StateMachine.BLOCK);
+                    else
+                        ChangeStateMachine(rat, StateMachine.ATTACK);
+                }
+                else if (playerState == 2)
+                {
+                    ChangeStateMachine(rat, (StateMachine)playerState - 2);
+                }
+                else if (playerState == 3 && !(Boolean)ratState.GetAnimationTree().Get(Rat.action))
                 {
                     GD.Randomize();
                     ratState.stateMachine = (StateMachine)GD.RandRange(0, 2);
