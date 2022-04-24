@@ -6,8 +6,8 @@ namespace RatBot
 
     public enum StateMachine
     {
-        ATTACK,
         SLASH,
+        ATTACK,
         BLOCK,
         WALK,
         IDLE,
@@ -16,8 +16,8 @@ namespace RatBot
 
     public enum ActionState
     {
-        ATTACK = 0,
-        SLASH = 1,
+        SLASH = 0,
+        ATTACK = 1,
         BLOCK = 2,
         NONE = 3
     }
@@ -36,7 +36,7 @@ namespace RatBot
         public const String action_trans = "parameters/action_trans/current";
         public const String action = "parameters/action/active";
         public const String state = "parameters/state/blend_amount";
-        public const String deathType = "parameters/death_type/blend_amount";
+        public const String deathType = "parameters/death_type/current";
         public const String block = "parameters/block/active";
 
         // Variables
@@ -44,7 +44,7 @@ namespace RatBot
 
         private VisibilityNotifier visibilityNotifier = null;
         private KinematicBody target = null;
-        public StateMachine stateMachine = StateMachine.REST;
+        public StateMachine stateMachine = (StateMachine)GD.RandRange(4,6);
         public ActionState actionState = ActionState.NONE;
         private Tween tween = null;
         public KinematicBody player { set; get; } = null;
@@ -62,9 +62,12 @@ namespace RatBot
 
         public override void _PhysicsProcess(float delta)
         {
-            SignalHandling();
-            StateSwitching();
-            brain.Mind(this, player);
+            if (IsAlive())
+            {
+                SignalHandling();
+                StateSwitching();
+                brain.Mind(this, player);
+            }
         }
 
         public void SignalHandling()
@@ -125,13 +128,30 @@ namespace RatBot
             this.animationTree = animationTree;
         }
 
-        public void MakeActionSignal(ActionState actionState)
+        public async void MakeActionSignal(ActionState actionState)
         {
             if (this.actionState != actionState)
             {
+                if (actionState == ActionState.ATTACK)
+                    await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+                else if (actionState == ActionState.SLASH)
+                    await ToSignal(GetTree().CreateTimer(0.9f), "timeout");
+                else if (actionState == ActionState.BLOCK)
+                    await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
                 EmitSignal("ActionSignal", actionState);
                 this.actionState = actionState;
             }
+        }
+
+        public void Death()
+        {
+            animationTree.Set(deathType, GD.RandRange(0,2));
+            animationTree.Set(life, 1);
+        }
+
+        public bool IsAlive()
+        {
+            return (int)animationTree.Get(life) != 1;
         }
 
     }

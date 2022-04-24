@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/neares_layer.tres" type="Material" id=1]
 [ext_resource path="res://Assets/Hero.material" type="Material" id=2]
-
-[sub_resource type="CapsuleShape" id=4]
-radius = 6.31196
-height = 53.9777
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "sword_Cube004"
@@ -22,11 +18,7 @@ surfaces/0 = {
 "vertex_count": 241
 }
 
-[node name="Sword" type="Area"]
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 37.4556, 0, 0 )
-shape = SubResource( 4 )
+[node name="Sword" type="Spatial"]
 
 [node name="Sword" type="MeshInstance" parent="."]
 transform = Transform( -3.38627e-06, 77.4688, 0, 3.38627e-06, 1.48019e-13, -77.4688, -77.4688, -3.38627e-06, -3.38627e-06, 0, 0, 0 )

@@ -66,7 +66,7 @@ public class Brain
             {
                 if (playerState < 2)
                 {
-                    if (playerState == 0)
+                    if (playerState == (int)StateMachine.ATTACK)
                         ChangeStateMachine(rat, StateMachine.BLOCK);
                     else
                         ChangeStateMachine(rat, StateMachine.ATTACK);

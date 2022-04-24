@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/neares_layer.tres" type="Material" id=1]
 
@@ -16,17 +16,9 @@ surfaces/0 = {
 "vertex_count": 368
 }
 
-[sub_resource type="CapsuleShape" id=2]
-radius = 8.20924
-height = 31.3608
-
-[node name="RatSword" type="Area"]
+[node name="RatSword" type="Spatial"]
 
 [node name="Rat sword" type="MeshInstance" parent="."]
 transform = Transform( -1.03748e-05, 237.348, 0, -237.348, -1.03748e-05, 0, 0, 0, 237.348, -2.12648, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -6.88943e-08, 0, 1.57612, 0, 1.57612, 0, -1.57612, 0, -6.88943e-08, 49.2255, 0, 0 )
-shape = SubResource( 2 )

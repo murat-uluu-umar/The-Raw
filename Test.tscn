@@ -152,5 +152,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88617, 0.498224, -4.62887 )
 [node name="Rat" parent="DuelManager" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.89847 )
 
+[node name="Rat2" parent="DuelManager" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.88835 )
+
+[node name="Rat3" parent="DuelManager" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.84619 )
+
+[node name="Rat4" parent="DuelManager" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.43858 )
+
 [node name="Hero" parent="DuelManager" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046516, 9.286 )

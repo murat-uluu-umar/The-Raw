@@ -1454,7 +1454,12 @@ fadein_time = 0.16
 fadeout_time = 0.09
 autorestart_delay = 0.0
 
-[sub_resource type="AnimationNodeBlend2" id=19]
+[sub_resource type="AnimationNodeTransition" id=33]
+input_count = 2
+input_0/name = "state 0"
+input_0/auto_advance = false
+input_1/name = "state 1"
+input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeTransition" id=15]
 input_count = 2
@@ -1475,7 +1480,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=26]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -1366.67, 214.667 )
+graph_offset = Vector2( -1006.67, 105.333 )
 nodes/Animatio3/node = SubResource( 20 )
 nodes/Animatio3/position = Vector2( -213.333, 0 )
 nodes/Animation/node = SubResource( 18 )
@@ -1500,15 +1505,15 @@ nodes/action_trans/node = SubResource( 29 )
 nodes/action_trans/position = Vector2( -960, 373.333 )
 nodes/block/node = SubResource( 31 )
 nodes/block/position = Vector2( -560, 133.333 )
-nodes/death_type/node = SubResource( 19 )
-nodes/death_type/position = Vector2( -133.333, 293.333 )
+nodes/death_type/node = SubResource( 33 )
+nodes/death_type/position = Vector2( -106.667, 320 )
 nodes/life/node = SubResource( 15 )
 nodes/life/position = Vector2( 53.3333, 133.333 )
 nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "block", "TimeScale", 0, "Animation 8", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "life", 0, "rest", "life", 1, "death_type", "block", 0, "action", "block", 1, "TimeScale" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "block", "block", 0, "action", "block", 1, "TimeScale", "TimeScale", 0, "Animation 8", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2" ]
 
 [node name="Rat" type="KinematicBody"]
 collision_layer = 2
@@ -1595,7 +1600,7 @@ bones/14/name = "mixamorig_RightHand"
 bones/14/parent = 13
 bones/14/rest = Transform( 1, 1.13359e-08, 7.02858e-09, -1.13359e-08, 1, -3.20734e-07, -7.02858e-09, 3.20734e-07, 1, -2.83122e-07, 23.8526, 6.04242e-06 )
 bones/14/enabled = true
-bones/14/bound_children = [  ]
+bones/14/bound_children = [ NodePath("BoneAttachment") ]
 bones/15/name = "mixamorig_LeftUpLeg"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.975427, 0.216568, 0.0405924, -0.162441, -0.83127, 0.531605, 0.148873, 0.511946, 0.846019, 9.15365, -5.46908, -0.38238 )
@@ -1653,7 +1658,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.309731, -0.82792, 0.467563, 0.555004, 0.241855, 0.795911, -0.772033, 0.506019, 0.384588, -34.9844, -7.93096, -67.086 )
+transform = Transform( -0.31913, -0.827787, 0.461438, 0.517559, 0.255651, 0.816562, -0.793907, 0.499412, 0.346842, -35.6676, -6.41457, -67.7837 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]
@@ -1683,9 +1688,9 @@ active = true
 process_mode = 0
 parameters/TimeScale/scale = 0.84
 parameters/action/active = false
-parameters/action_trans/current = 1
+parameters/action_trans/current = 0
 parameters/block/active = false
-parameters/death_type/blend_amount = 1.0
+parameters/death_type/current = 0
 parameters/life/current = 0
 parameters/rest/current = 1
 parameters/state/blend_amount = 1.0
@@ -1695,5 +1700,3 @@ parameters/state/blend_amount = 1.0
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0505656, 0.803999, -0.00414727 )
 aabb = AABB( -0.567939, -0.82851, -0.529437, 1.13588, 1.65702, 1.05887 )
-
-[node name="Delay" type="Timer" parent="."]
