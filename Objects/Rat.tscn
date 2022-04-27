@@ -1,8 +1,11 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/neares_layer.tres" type="Material" id=1]
 [ext_resource path="res://Objects/RatSword.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Rat.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Audio/monster-9.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/492496__soundflakes__demon-death-03.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/monster-10.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpatialMaterial" id=13]
 resource_name = "Hero.002"
@@ -1513,7 +1516,7 @@ nodes/rest/node = SubResource( 16 )
 nodes/rest/position = Vector2( -160, 133.333 )
 nodes/state/node = SubResource( 26 )
 nodes/state/position = Vector2( -1200, 160 )
-node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "block", "block", 0, "action", "block", 1, "TimeScale", "TimeScale", 0, "Animation 8", "life", 0, "rest", "life", 1, "death_type", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7", "death_type", 0, "Animation", "death_type", 1, "Animation 2" ]
+node_connections = [ "action", 0, "state", "action", 1, "action_trans", "state", 0, "Animation 4", "state", 1, "Animation 5", "output", 0, "life", "rest", 0, "Animatio3", "rest", 1, "block", "life", 0, "rest", "life", 1, "death_type", "block", 0, "action", "block", 1, "TimeScale", "TimeScale", 0, "Animation 8", "death_type", 0, "Animation", "death_type", 1, "Animation 2", "action_trans", 0, "Animation 6", "action_trans", 1, "Animation 7" ]
 
 [node name="Rat" type="KinematicBody"]
 collision_layer = 2
@@ -1658,7 +1661,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="RatArm/Skeleton"]
-transform = Transform( -0.31913, -0.827787, 0.461438, 0.517559, 0.255651, 0.816562, -0.793907, 0.499412, 0.346842, -35.6676, -6.41457, -67.7837 )
+transform = Transform( -0.335065, -0.809219, 0.482593, 0.50265, 0.279698, 0.817992, -0.796914, 0.516657, 0.313037, -34.8467, -7.07485, -66.9381 )
 bone_name = "mixamorig_RightHand"
 
 [node name="margin" type="Position3D" parent="RatArm/Skeleton/BoneAttachment"]
@@ -1700,3 +1703,12 @@ parameters/state/blend_amount = 1.0
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0505656, 0.803999, -0.00414727 )
 aabb = AABB( -0.567939, -0.82851, -0.529437, 1.13588, 1.65702, 1.05887 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="SecondSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

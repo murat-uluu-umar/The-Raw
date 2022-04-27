@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Plants.png" type="Texture" id=1]
+
+[node name="Brush" type="Spatial"]
+
+[node name="SpringArm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+collision_mask = 12
+spring_length = 10.0
+
+[node name="Spatial" type="Spatial" parent="SpringArm"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="SpringArm/Spatial"]
+transform = Transform( 1.06685, 0, 0, 0, 1.06685, 0, 0, 0, 1.06685, -0.0550326, 0.816788, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 732.25, 9.25, 215, 192 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="SpringArm/Spatial"]
+transform = Transform( 0.83548, 0, 0, 0, 0.83548, 0, 0, 0, 0.83548, 0.948081, 0.660528, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 732.25, 9.25, 215, 192 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="SpringArm/Spatial"]
+transform = Transform( 0.72414, 0, 0, 0, 0.72414, 0, 0, 0, 0.72414, -0.923501, 0.582398, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 732.25, 9.25, 215, 192 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="SpringArm/Spatial"]
+transform = Transform( 1.48656, 0, 0, 0, 1.48656, 0, 0, 0, 1.48656, 0.395804, 1.15061, -0.182695 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 732.25, 9.25, 215, 192 )

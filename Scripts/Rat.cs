@@ -25,6 +25,9 @@ namespace RatBot
     public class Rat : KinematicBody
     {
 
+        [Export]
+        public float skill = 60;
+
         // Signals
         [Signal]
         public delegate void OnScreen(KinematicBody body);
@@ -38,22 +41,26 @@ namespace RatBot
         public const String state = "parameters/state/blend_amount";
         public const String deathType = "parameters/death_type/current";
         public const String block = "parameters/block/active";
-
         // Variables
         private AnimationTree animationTree = null;
-
+        private AudioStreamPlayer deathSound = null;
+        private AudioStreamPlayer Sound = null;
+        private AudioStreamPlayer SecondSound = null;
         private VisibilityNotifier visibilityNotifier = null;
-        private KinematicBody target = null;
-        public StateMachine stateMachine = (StateMachine)GD.RandRange(4,6);
+        public StateMachine stateMachine = (StateMachine)GD.RandRange(4, 6);
         public ActionState actionState = ActionState.NONE;
         private Tween tween = null;
         public KinematicBody player { set; get; } = null;
+        public bool playerDeath = false;
         public Brain brain = null;
 
         public override void _Ready()
         {
-            brain = new Brain(60);
+            brain = new Brain(skill);
             animationTree = GetNode<AnimationTree>("AnimationTree");
+            deathSound = GetNode<AudioStreamPlayer>("DeathSound");
+            Sound = GetNode<AudioStreamPlayer>("Sound");
+            SecondSound = GetNode<AudioStreamPlayer>("SecondSound");
             visibilityNotifier = GetNode<VisibilityNotifier>("VisibilityNotifier");
             tween = GetNode<Tween>("Tween");
             Connect("OnScreen", GetParent(), "Submit");
@@ -72,9 +79,11 @@ namespace RatBot
 
         public void SignalHandling()
         {
-            if (visibilityNotifier.IsOnScreen() && player == null)
+            if (visibilityNotifier.IsOnScreen() && player == null && playerDeath == false)
             {
                 EmitSignal("OnScreen", this);
+                Sound.Play();
+                SecondSound.Play();
             }
         }
 
@@ -130,22 +139,37 @@ namespace RatBot
 
         public async void MakeActionSignal(ActionState actionState)
         {
-            if (this.actionState != actionState)
-            {
-                if (actionState == ActionState.ATTACK)
-                    await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
-                else if (actionState == ActionState.SLASH)
-                    await ToSignal(GetTree().CreateTimer(0.9f), "timeout");
-                else if (actionState == ActionState.BLOCK)
-                    await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
-                EmitSignal("ActionSignal", actionState);
-                this.actionState = actionState;
-            }
+            if (playerDeath == false)
+                if (this.actionState != actionState)
+                {
+                    GD.Print(playerDeath);
+                    if (actionState == ActionState.ATTACK)
+                    {
+                        SecondSound.Play();
+                        GD.Print("ATTACK");
+                        await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+                    }
+                    else if (actionState == ActionState.SLASH)
+                    {
+                        SecondSound.Play();
+                        GD.Print("SLASH");
+                        await ToSignal(GetTree().CreateTimer(0.9f), "timeout");
+                    }
+                    else if (actionState == ActionState.BLOCK)
+                    {
+                        await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+                        SecondSound.Play();
+                        GD.Print("BLOCK");
+                    }
+                    EmitSignal("ActionSignal", actionState);
+                    this.actionState = actionState;
+                }
         }
 
         public void Death()
         {
-            animationTree.Set(deathType, GD.RandRange(0,2));
+            deathSound.Play();
+            animationTree.Set(deathType, GD.RandRange(0, 2));
             animationTree.Set(life, 1);
         }
 

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/midle_layer.tres" type="Material" id=1]
+[ext_resource path="res://Objects/Smoke.tscn" type="PackedScene" id=2]
+
+[node name="House" type="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71935e-08, 0, 0.622114 )
+use_collision = true
+width = 3.3824
+height = 3.27639
+depth = 3.02352
+material = ExtResource( 1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( -0.0939289, -0.112557, 3.79884, -2.91884, 2.43578, -1.27587e-07, -2.43396, -2.91667, -0.146601, 1.99072, 1.7041, 2.71129 )
+polygon = PoolVector2Array( 0, 0, 0, 1, 1, 1 )
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 0.133527, 0.980642, -0.14322, -0.990815, 0.128982, -0.0405982, -0.021339, 0.147325, 0.988858, 2.05076, -0.668413, -0.110567 )
+width = 2.46814
+height = 0.291685
+depth = 1.33846
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( -0.972148, -0.00396349, 0.234333, -0.233728, 0.0901121, -0.968117, -0.0172791, -0.995924, -0.0885287, 1.34307, 3.67584, -0.129819 )
+width = 3.70192
+height = 0.291685
+depth = 0.9101
+material = ExtResource( 1 )
+
+[node name="Smoke" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.306019, 3.8794, -0.362244 )
+
+[node name="Smoke2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26671, -1.33241, -0.362244 )

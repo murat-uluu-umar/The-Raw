@@ -1,0 +1,202 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Objects/Hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/DuelManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/midle_layer.tres" type="Material" id=3]
+[ext_resource path="res://Objects/House.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Landscape.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Forest.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/Fire.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/Rat.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/BrokenHouse.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Audio/Alexander Ehlers - Twists.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Audio/jute-dh-weather/wind_4.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Audio/amb_forest (online-audio-converter.com).mp3" type="AudioStream" id=12]
+[ext_resource path="res://Objects/Tree2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Objects/Tree1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Objects/Trees1.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Area.gd" type="Script" id=16]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 8.67301, 5.83276, 2.44187 )
+
+[node name="Village" type="Spatial"]
+
+[node name="DuelManager" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.996, 0, 0 )
+
+[node name="Hero" parent="DuelManager" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.009, -102.157 )
+
+[node name="Rat" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.595, -74.12 )
+skill = 30.0
+
+[node name="Rat2" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( -0.302653, 0, -0.953101, 0, 1, 0, 0.953101, 0, -0.302653, 0, 0.596, -71.471 )
+skill = 20.0
+
+[node name="Rat3" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( -0.789748, 0, -0.613431, 0, 1, 0, 0.613431, 0, -0.789748, 0, 0.565, -19.819 )
+
+[node name="Rat4" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.248, 20.839 )
+
+[node name="Rat5" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527, 15.831 )
+
+[node name="Rat6" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527, 6.41324 )
+skill = 100.0
+
+[node name="Rat7" parent="DuelManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527, 26.2746 )
+skill = 100.0
+
+[node name="Level" type="Spatial" parent="."]
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34.8786 )
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+polygon = PoolVector2Array( -10.263, -5.5135, -50, 1, 1, 0.552, 8, -5 )
+depth = 150.0
+smooth_faces = true
+material = ExtResource( 3 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Level/CSGPolygon"]
+transform = Transform( 1.20807, 0.449933, 0.0145914, -0.553533, 0.82709, -0.316813, -0.254491, 0.336871, 0.758354, -4.89463, 0, -118.602 )
+radius = 2.34001
+material = ExtResource( 3 )
+
+[node name="CSGSphere2" type="CSGSphere" parent="Level/CSGPolygon"]
+transform = Transform( 0.0607417, 0.632934, -0.18245, -1.33931, 0.0818989, 0.0273927, 0.370831, 0.201401, 0.517652, -6.56076, 1.23339, -116.313 )
+radius = 2.34001
+radial_segments = 8
+rings = 4
+material = ExtResource( 3 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Level/CSGPolygon"]
+transform = Transform( 0.0898852, 0.995952, 0, -0.995952, 0.0898852, 0, 0, 0, 1, 0, 0, -71.6651 )
+operation = 2
+radius = 3.06397
+height = 10.9432
+material = ExtResource( 3 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Level/CSGPolygon"]
+transform = Transform( 0.0898852, 0.995952, 0, -0.995952, 0.0898852, 0, 0, 0, 1, 0, 1.14166, -68.3417 )
+operation = 2
+radius = 3.06397
+height = 10.9432
+material = ExtResource( 3 )
+
+[node name="Decor" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="House" parent="Decor" instance=ExtResource( 4 )]
+transform = Transform( -0.588098, 0, 0.0320561, 0, 0.58897, 0, -0.0320561, 0, -0.588098, 105.854, 1.21418, -4.18585 )
+
+[node name="House2" parent="Decor" instance=ExtResource( 4 )]
+transform = Transform( -0.489317, -4.99301e-09, -0.327804, -0.0635754, 0.577787, 0.0948998, 0.32158, 0.114227, -0.480026, 99.1246, 0.931139, -10.9704 )
+
+[node name="Landscape" parent="Decor" instance=ExtResource( 5 )]
+transform = Transform( 0.349, 0, -1.77396e-15, 0, 0.349, 0, 1.77396e-15, 0, 0.349, 0, 0, 0 )
+
+[node name="Plants" type="Spatial" parent="Decor"]
+
+[node name="Forest" parent="Decor/Plants" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.80314, 1.43649, -37.1034 )
+
+[node name="Forest2" parent="Decor/Plants" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.7132, 1.43649, -42.8577 )
+
+[node name="Forest3" parent="Decor/Plants" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.7132, 1.43649, -20.9116 )
+
+[node name="Forest4" parent="Decor/Plants" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.413, 1.43649, -20.9116 )
+
+[node name="Tree1" parent="Decor/Plants" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0469, 0.573709, -1.47134 )
+
+[node name="Tree2" parent="Decor/Plants" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3131, 0.591082, -3.44907 )
+
+[node name="Tree3" parent="Decor/Plants" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.714, 0.577458, -1.89822 )
+
+[node name="Tree4" parent="Decor/Plants" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8417, 0.56947, -0.98877 )
+
+[node name="Tree5" parent="Decor/Plants" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6724, 0.581582, -2.36759 )
+
+[node name="Trees1" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4669, 0.571041, -1.16764 )
+
+[node name="Trees2" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2606, 0.57441, -1.55121 )
+
+[node name="Trees3" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4533, 0.575645, -1.69174 )
+
+[node name="Trees4" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2822, 0.610783, -5.69182 )
+
+[node name="Trees5" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.1943, 0.581578, -2.36721 )
+
+[node name="Trees6" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.9028, 0.622, -6.96876 )
+
+[node name="Trees7" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2075, 0.631829, -8.08766 )
+
+[node name="Trees8" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3887, 0.601911, -4.68193 )
+
+[node name="Trees9" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4312, 0.631247, -8.02146 )
+
+[node name="Trees10" parent="Decor/Plants" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9195, 0.608783, -5.46423 )
+
+[node name="FIre" parent="Decor" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 72.6828, 0.58708, -5.05061 )
+
+[node name="BrokenHouse" parent="Decor" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.1114, 2.72175, -24.3455 )
+
+[node name="BrokenHouse2" parent="Decor" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7402, 2.72175, -29.6798 )
+
+[node name="BrokenHouse3" parent="Decor" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.924, 2.72175, -23.2877 )
+
+[node name="Music" type="AudioStreamPlayer" parent="Decor"]
+stream = ExtResource( 10 )
+volume_db = -11.947
+pitch_scale = 0.8
+autoplay = true
+
+[node name="Wind" type="AudioStreamPlayer" parent="Decor"]
+stream = ExtResource( 11 )
+volume_db = -19.189
+autoplay = true
+
+[node name="Forest" type="AudioStreamPlayer" parent="Decor"]
+stream = ExtResource( 12 )
+volume_db = 5.401
+autoplay = true
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35632, 30.5836 )
+collision_layer = 8
+input_ray_pickable = false
+script = ExtResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]

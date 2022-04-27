@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Raw"
-run/main_scene="res://Test.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/Menu.tscn"
+config/icon="res://Screenshot_20220426_20283355.png"
 
 [autoload]
 

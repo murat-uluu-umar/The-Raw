@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Objects/Landscape.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/midle_layer.tres" type="Material" id=2]
+[ext_resource path="res://Objects/Forest.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Audio/jute-dh-weather/wind_4.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Quit.cs" type="Script" id=6]
+[ext_resource path="res://Assets/Theme/main_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Objects/Sword.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Fire.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Audio/jute-dh-weather/rain_2.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Audio/song18.mp3" type="AudioStream" id=11]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Menu" type="Spatial" parent="."]
+
+[node name="Control" type="Control" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Quit" type="Button" parent="Menu/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.9998
+margin_top = 18.0
+margin_right = 64.9998
+margin_bottom = 48.0
+theme = ExtResource( 7 )
+text = "Quit"
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Menu/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -164.5
+margin_top = -26.5
+margin_right = 164.5
+margin_bottom = 26.5
+theme = ExtResource( 7 )
+text = "Thanks you for playing the raw version of my game!"
+
+[node name="Camera" type="Camera" parent="Menu"]
+transform = Transform( 0.0596546, -0.289518, 0.955312, 0, 0.957016, 0.290034, -0.998219, -0.0173019, 0.0570905, 0.389, 0.786, 2.468 )
+far = 8192.0
+
+[node name="Decor" type="Spatial" parent="Menu"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.3296, 0, 10.0037 )
+
+[node name="Plants" type="Spatial" parent="Menu/Decor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.90556, 0 )
+
+[node name="Forest" type="Spatial" parent="Menu/Decor/Plants" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.067, -1.784, -8.343 )
+
+[node name="Sword" type="Spatial" parent="Menu/Decor" instance=ExtResource( 8 )]
+transform = Transform( -0.0117292, -0.0357028, 0.0137018, -0.0381264, 0.0120296, -0.00129197, -0.00296748, -0.0134388, -0.0375579, 8.86928, -0.482431, 8.70816 )
+
+[node name="Landscape" type="Spatial" parent="Menu/Decor" instance=ExtResource( 1 )]
+transform = Transform( 0.349473, 0, 0, 0, 0.349473, 0, 0, 0, 0.349473, 10.0037, 0, 11.3296 )
+
+[node name="CSGBox" type="CSGBox" parent="Menu"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7446, -2.73631, 0 )
+use_collision = true
+collision_layer = 8
+collision_mask = 12
+width = 37.9015
+height = 0.902964
+depth = 47.9321
+material = ExtResource( 2 )
+
+[node name="FIre" type="Spatial" parent="Menu/CSGBox" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6817, 0.455357, 2.81659 )
+
+[node name="Rain" type="AudioStreamPlayer3D" parent="Menu"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89267, 0, 3.46486 )
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="Wind" type="AudioStreamPlayer3D" parent="Menu"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89267, 0, 3.46486 )
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer3D" parent="Menu"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89267, 0, 3.46486 )
+stream = ExtResource( 11 )
+autoplay = true

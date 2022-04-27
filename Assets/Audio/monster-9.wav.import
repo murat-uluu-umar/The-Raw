@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/monster-9.wav-1447fa4e4575ce045025964cfb3e4a7f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/monster-9.wav"
+dest_files=[ "res://.import/monster-9.wav-1447fa4e4575ce045025964cfb3e4a7f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

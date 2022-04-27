@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/midle_layer.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Smoke.png" type="Texture" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+params_billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 1, 1, 0.337255 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 3 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.0757576, 1 )
+
+[node name="FIre" type="Spatial"]
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 0.0945353, 0, 0, 0, 0.0438479, -0.0579373, 0, 0.00758332, 0.335002, 0.0184051, 0.124626, 0.00230079 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial2" type="Spatial" parent="."]
+transform = Transform( 0.038689, -0.00691914, -0.305663, 0, 0.0438479, -0.0579373, 0.0862559, 0.0031035, 0.137101, 0.0184051, 0.124626, 0.00230079 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial3" type="Spatial" parent="."]
+transform = Transform( -0.0735818, -0.00476102, -0.210323, 0, 0.0438479, -0.0579373, 0.0593518, -0.00590249, -0.26075, 0.0184051, 0.124626, 0.00230079 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial4" type="Spatial" parent="."]
+transform = Transform( -0.0565084, 0.00607939, 0.268565, 0, 0.0438479, -0.0579373, -0.0757873, -0.00453291, -0.200248, 0.0184051, 0.124626, 0.00230079 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial5" type="Spatial" parent="."]
+transform = Transform( 0.0235451, 0.00734433, 0.324445, 0, 0.0438479, -0.0579373, -0.0915563, 0.00188871, 0.0834363, 0.0762251, 0.124626, 0.0227078 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial6" type="Spatial" parent="."]
+transform = Transform( 0.0767937, 0.0131266, 0.17104, 0, 0.0383867, -0.171962, -0.055133, 0.0182838, 0.238238, 0.0762247, 0.308869, 0.11794 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial6"]
+transform = Transform( 1, 0, 0, -1.49012e-08, 1, 2.98023e-08, -1.49012e-08, -9.31323e-10, 1, -1.30046e-07, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial7" type="Spatial" parent="."]
+transform = Transform( 0.0817324, -0.0125806, -0.141236, 0, 0.0367879, -0.191276, 0.0475048, 0.0216453, 0.243, 0.0184051, 0.308869, 0.00230079 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial8" type="Spatial" parent="."]
+transform = Transform( -0.0251585, -0.0270784, -0.25416, 0, 0.0345111, -0.214621, 0.0911262, -0.00747591, -0.0701694, -0.0666237, 0.308869, -0.0385132 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial9" type="Spatial" parent="."]
+transform = Transform( -0.0901027, 0.00690979, 0.0883062, 0, 0.038194, -0.174449, -0.0286082, -0.0217627, -0.278123, 0.0864286, 0.308869, -0.109937 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="Spatial10" type="Spatial" parent="."]
+transform = Transform( -0.0342693, 0.0209931, 0.273257, 0, 0.0383765, -0.172095, -0.0881052, -0.00816546, -0.106286, 0.130644, 0.308869, -0.0181062 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07191, 0.81124 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667874, 0 )
+amount = 20
+lifetime = 2.33
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 0.74
+direction = Vector3( 0, 1, 0 )
+spread = 5.07
+gravity = Vector3( 0, 0.854, 0 )
+initial_velocity = 0.94
+initial_velocity_random = 0.58
+angular_velocity = 1.07
+angular_velocity_random = 0.38
+scale_amount = 2.38
+scale_amount_random = 1.0
+color_ramp = SubResource( 4 )

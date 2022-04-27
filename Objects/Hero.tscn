@@ -1763,7 +1763,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeBlend2" id=21]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -752, -227.667 )
+graph_offset = Vector2( -934.667, -226.667 )
 nodes/Animation/node = SubResource( 20 )
 nodes/Animation/position = Vector2( -320, -180 )
 "nodes/Animation 2/node" = SubResource( 19 )
@@ -1809,7 +1809,7 @@ nodes/state/node = SubResource( 40 )
 nodes/state/position = Vector2( 320, -20 )
 nodes/up_state/node = SubResource( 21 )
 nodes/up_state/position = Vector2( 20, -180 )
-node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "block", 0, "jump", "block", 1, "Animation 8", "activity_shot", 0, "state", "activity_shot", 1, "activity", "Crouch_speed", 0, "Animation 7", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "life", 0, "block", "life", 1, "Animation 9" ]
+node_connections = [ "state", 0, "up_state", "state", 1, "down_state", "output", 0, "life", "activity", 0, "TimeScale 3", "activity", 1, "TimeScale", "jump", 0, "activity_shot", "jump", 1, "TimeScale 2", "down_state", 0, "Crouch_speed", "down_state", 1, "Animation 6", "life", 0, "block", "life", 1, "Animation 9", "up_state", 0, "Speed", "up_state", 1, "Animation 2", "activity_shot", 0, "state", "activity_shot", 1, "activity", "block", 0, "jump", "block", 1, "Animation 8", "Speed", 0, "Animation", "TimeScale", 0, "Animation 4", "TimeScale 2", 0, "Animation 5", "TimeScale 3", 0, "Animation 3", "Crouch_speed", 0, "Animation 7" ]
 
 [node name="Hero" type="Spatial"]
 
@@ -1969,7 +1969,7 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Forearm" type="BoneAttachment" parent="HeroBody/Boy/Skeleton"]
-transform = Transform( 0.204765, 0.0945207, 0.974236, 0.277573, 0.948858, -0.150399, -0.938628, 0.301219, 0.168057, -13.7276, 35.6454, -64.3288 )
+transform = Transform( 0.29099, 0.298965, 0.908814, 0.380506, 0.835395, -0.396646, -0.877803, 0.46123, 0.129334, -8.70876, 33.2809, -63.6559 )
 bone_name = "mixamorig_RightHand"
 
 [node name="Hand" type="Position3D" parent="HeroBody/Boy/Skeleton/Forearm"]
@@ -1994,7 +1994,7 @@ anims/Walk = SubResource( 13 )
 [node name="Center point" type="Position3D" parent="."]
 
 [node name="Point" type="Position3D" parent="Center point"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 1, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.30546, 1.44187, -1.00775e-07 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
@@ -2012,14 +2012,14 @@ parameters/down_state/blend_amount = 0.0
 parameters/jump/active = false
 parameters/life/current = 0
 parameters/state/blend_amount = 0.0
-parameters/up_state/blend_amount = 0.0
+parameters/up_state/blend_amount = 1.0
 
 [node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 1, 0 )
 current = true
-fov = 75.0
+fov = 47.3
 near = 0.01
-far = 50.0
+far = 1707.5
 target = NodePath("../Center point/Point")
 speed = 8.0
 enabled = true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/492496__soundflakes__demon-death-03.wav-a1b14f965f82ec9fc478fac7b5e66c61.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/492496__soundflakes__demon-death-03.wav"
+dest_files=[ "res://.import/492496__soundflakes__demon-death-03.wav-a1b14f965f82ec9fc478fac7b5e66c61.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

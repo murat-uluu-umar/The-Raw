@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/1449_lostchocolatelab_06sword02 (online-audio-converter.com).mp3-8c0d3dc29d69a80af503596c440fba3d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/1449_lostchocolatelab_06sword02 (online-audio-converter.com).mp3"
+dest_files=[ "res://.import/1449_lostchocolatelab_06sword02 (online-audio-converter.com).mp3-8c0d3dc29d69a80af503596c440fba3d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

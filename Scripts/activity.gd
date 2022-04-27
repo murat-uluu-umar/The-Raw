@@ -148,7 +148,6 @@ func throw_signal(action_states):
 			yield(get_tree().create_timer(15 / 18), 'timeout')
 		elif (action_state == ActionState.BLOCK):
 			yield(get_tree().create_timer(0.5), 'timeout')
-		print('yield')
 		emit_signal('action_signal', action_states)
 		action_state = action_states
 

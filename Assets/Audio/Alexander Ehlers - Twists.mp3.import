@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Alexander Ehlers - Twists.mp3-3b9d65b9498976d590df6ac55dcbe260.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Alexander Ehlers - Twists.mp3"
+dest_files=[ "res://.import/Alexander Ehlers - Twists.mp3-3b9d65b9498976d590df6ac55dcbe260.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
