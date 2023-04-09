@@ -5,7 +5,7 @@ This game developed for that ![Gamedev.js gamejam](https://itch.io/jam/gamedevjs
 The theme was: RAW. My project was judged based on how well I implement the theme, and I could interpret it however I like.
 Games was voted on based on a given criteria: Innovation, Theme, Gameplay, Graphics, and Audio. The Overall ranking was based on the summary of those.
 
-So don't be hesitate! Try out this game in ![itch.io](https://murat-uulu-umar.itch.io/the-raw-genezis)
+So don't be hesitate! Try out this game on ![itch.io](https://murat-uulu-umar.itch.io/the-raw-genezis)
 
 There are a bunch of screenshots: 
 
